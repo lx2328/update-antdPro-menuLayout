@@ -28,7 +28,7 @@ const FooterView = () => (
       // ]}
       copyright={
         <Fragment>
-          Copyright <Icon type="copyright" /> 2018 广东北斗天云科技有限公司
+          Copyright <Icon type="copyright" /> 2018 蚂蚁金服
         </Fragment>
       }
     />

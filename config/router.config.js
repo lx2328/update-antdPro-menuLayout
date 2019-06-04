@@ -34,16 +34,16 @@ export default [
             name: 'analysis',
             component: './Dashboard/Analysis',
           },
-          {
-            path: '/dashboard/monitor',
-            name: 'monitor',
-            component: './Dashboard/Monitor',
-          },
-          {
-            path: '/dashboard/workplace',
-            name: 'workplace',
-            component: './Dashboard/Workplace',
-          },
+          // {
+          //   path: '/dashboard/monitor',
+          //   name: 'monitor',
+          //   component: './Dashboard/Monitor',
+          // },
+          // {
+          //   path: '/dashboard/workplace',
+          //   name: 'workplace',
+          //   component: './Dashboard/Workplace',
+          // },
         ],
       },
       // forms

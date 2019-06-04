@@ -1,5 +1,6 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Layout } from 'antd';
+import Link from 'umi/link';
 import DocumentTitle from 'react-document-title';
 import isEqual from 'lodash/isEqual';
 import memoizeOne from 'memoize-one';
@@ -10,16 +11,16 @@ import pathToRegexp from 'path-to-regexp';
 import Media from 'react-media';
 import { formatMessage } from 'umi/locale';
 import Authorized from '@/utils/Authorized';
-// import logo from '../assets/logo.svg';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.svg';
 import Footer from './Footer';
 import Header from './Header';
 import Context from './MenuContext';
 import Exception403 from '../pages/Exception/403';
-import PageLoading from '@/components/PageLoading';
+// import PageLoading from '@/components/PageLoading';
 import SiderMenu from '@/components/SiderMenu';
 import { title } from '../defaultSettings';
 import styles from './BasicLayout.less';
+import logoStyle from '@/components/SiderMenu/index.less';
 
 // lazy load SettingDrawer
 // const SettingDrawer = React.lazy(() => import('@/components/SettingDrawer'));
@@ -157,7 +158,7 @@ class BasicLayout extends React.PureComponent {
   render() {
     const {
       navTheme,
-      layout: PropsLayout,
+      // layout: PropsLayout,
       children,
       location: { pathname },
       isMobile,
@@ -167,25 +168,46 @@ class BasicLayout extends React.PureComponent {
       fixedHeader,
     } = this.props;
 
-    const isTop = PropsLayout === 'topmenu';
+    // const isTop = PropsLayout === 'topmenu';
     const routerConfig = this.getRouterAuthority(pathname, routes);
     const contentStyle = !fixedHeader ? { paddingTop: 0 } : {};
     const layout = (
       <Layout>
         {/* {isTop && !isMobile ? null : (
           )} */}
-        <SiderMenu
-          logo={logo}
-          theme={navTheme}
-          onCollapse={this.handleMenuCollapse}
-          menuData={menuData}
-          isMobile={isMobile}
-          {...this.props}
-        />
+        {/* 某些页面不需要左侧栏，如下 */}
+        {
+          pathname === '/dashboard/analysis' ? (
+            <div
+              className={logoStyle.logo}
+              id="logo"
+              style={{
+                position: 'fixed',
+                zIndex: 999,
+                width: 256
+              }}
+            >
+              <Link to="/">
+                <img src={logo} alt="logo" />
+                <h1>Ant Design Pro</h1>
+              </Link>
+            </div>
+          ) : (
+            <SiderMenu
+              logo={logo}
+              theme={navTheme}
+              onCollapse={this.handleMenuCollapse}
+              menuData={menuData}
+              isMobile={isMobile}
+              {...this.props}
+            />
+          )
+        }
         <Layout
           style={{
             ...this.getLayoutStyle(),
             minHeight: '100vh',
+            paddingLeft: pathname === '/dashboard/analysis' ? 0 : 256
           }}
         >
           <Header
