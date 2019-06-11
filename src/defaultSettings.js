@@ -9,5 +9,5 @@ module.exports = {
   menu: {
     disableLocal: true,
   },
-  title: '车载视频定位管理平台',
+  title: 'Ant Design',
 };
