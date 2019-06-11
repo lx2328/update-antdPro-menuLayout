@@ -171,13 +171,14 @@ class BasicLayout extends React.PureComponent {
     // const isTop = PropsLayout === 'topmenu';
     const routerConfig = this.getRouterAuthority(pathname, routes);
     const contentStyle = !fixedHeader ? { paddingTop: 0 } : {};
+    const isLargeLayout = pathname === '/dashboard/analysis' || RegExp('/account').test(pathname) || RegExp('/exception').test(pathname)
     const layout = (
       <Layout>
         {/* {isTop && !isMobile ? null : (
           )} */}
         {/* 某些页面不需要左侧栏，如下 */}
         {
-          pathname === '/dashboard/analysis' ? (
+          isLargeLayout ? (
             <div
               className={logoStyle.logo}
               id="logo"
@@ -207,7 +208,7 @@ class BasicLayout extends React.PureComponent {
           style={{
             ...this.getLayoutStyle(),
             minHeight: '100vh',
-            paddingLeft: pathname === '/dashboard/analysis' ? 0 : 256
+            paddingLeft: isLargeLayout ? 0 : 256
           }}
         >
           <Header
