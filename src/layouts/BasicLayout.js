@@ -171,7 +171,7 @@ class BasicLayout extends React.PureComponent {
     // const isTop = PropsLayout === 'topmenu';
     const routerConfig = this.getRouterAuthority(pathname, routes);
     const contentStyle = !fixedHeader ? { paddingTop: 0 } : {};
-    const isLargeLayout = pathname === '/dashboard/analysis' || RegExp('/account').test(pathname) || RegExp('/exception').test(pathname)
+    const isLargeLayout = pathname === '/dashboard/analysis'
     const layout = (
       <Layout>
         {/* {isTop && !isMobile ? null : (
